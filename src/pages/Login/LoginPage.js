@@ -10,9 +10,9 @@ import auth from "../../firebase.init";
 
 const LoginPage = () => {
   const {register,formState: { errors },handleSubmit} = useForm();
-  const navigate=useNavigate()
-  let location = useLocation();
-  let from = location.state?.from?.pathname || "/";
+  // const navigate=useNavigate()
+  // let location = useLocation();
+  // let from = location.state?.from?.pathname || "/";
   const [signInWithGoogle, googleUser, googleLoading, googleError] =useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, user, loading, error] =useSignInWithEmailAndPassword(auth);
 

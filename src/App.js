@@ -7,6 +7,7 @@ import Register from './pages/Login/Register';
 function App() {
   return (
     <div className="App">
+      <LoginPage/>
   <Routes>
     <Route path="/" element={<LoginPage/>} />
     <Route path="/login" element={<LoginPage/>} />
