@@ -6,7 +6,9 @@ import Register from './pages/Login/Register';
 
 function App() {
   return (
-    <div className="App">
+    <div >
+      <p className='text-5xl font-bold text-center'>hello </p>
+
       <LoginPage/>
   <Routes>
     <Route path="/" element={<LoginPage/>} />

@@ -1,17 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 
 
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    const [createUserWithEmailAndPassword,user,loading, error,] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleUser, googleError] = useSignInWithGoogle(auth);
+    const [createUserWithEmailAndPassword,user, error,] = useCreateUserWithEmailAndPassword(auth);
     // const [createUserWithEmailAndPassword,user,loading, error,] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [updateProfile, updateError] = useUpdateProfile(auth);
     // const navigate=useNavigate()
     // let location = useLocation();
     // let from = location.state?.from?.pathname || "/";
