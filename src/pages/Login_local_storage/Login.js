@@ -3,17 +3,29 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-  const [name, setName] = useState(null);
-  const [pass, setPass] = useState(null);
-  const allUser=JSON.parse(localStorage.getItem('userInfo') || '[]')
-  const userInfo = { name: name, pass: pass };
+    
+  const allUser=JSON.parse(localStorage.getItem('userInfo'))
+console.log(allUser)
   const handleLogin = (e) => {
-    e.preventdefault();
+    const name=e.target.username.value
+    const pass=e.target.password.value
+    const userName=allUser.filter(u=>u.name===name)
+    if(userName.length!==0){
+        if(userName[0].pass === pass){
+            console.log('success')
+        }
+        else{
+            console.log('wrong password')
+        }
+    }
+    else{
+        console.log('wrong user')
+    }
+    console.log(name,pass)
+    e.preventDefault();
     // localStorage.setItem("userInfo", userInfo);
   };
-  allUser.push(userInfo)
-localStorage.setItem('userInfo',JSON.stringify(allUser))
- console.log(allUser)
+
   return (
     <>
       <div class="background h-[520px]">
@@ -25,7 +37,6 @@ localStorage.setItem('userInfo',JSON.stringify(allUser))
 
         <label for="username">Username</label>
         <input
-          onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Enter your user name"
           id="username"
@@ -33,7 +44,6 @@ localStorage.setItem('userInfo',JSON.stringify(allUser))
 
         <label for="password">Password</label>
         <input
-          onChange={(e) => setPass(e.target.value)}
           type="password"
           placeholder="Password"
           id="password"
