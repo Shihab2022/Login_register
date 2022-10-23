@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
-    const [name, setName] = useState(null);
-    const [pass, setPass] = useState(null);
     const allUser=JSON.parse(localStorage.getItem('userInfo') || '[]')
-    const userInfo = { name: name, pass: pass };
-    const handleLogin = (e) => {
-      e.preventdefault();
+   
+    const handleRegister = (e) => {
+        const name=e.target.username.value
+        const email=e.target.email.value
+        const password=e.target.password.value
+        const userInfo = { name: name, pass: password ,email:email };
+        localStorage.setItem('userInfo',JSON.stringify(allUser))
+        allUser.push(userInfo)
+        console.log(name,)
+    //   e.preventdefault();
+    console.log('ok')
+      e.preventDefault();
       // localStorage.setItem("userInfo", userInfo);
     };
-    allUser.push(userInfo)
-  localStorage.setItem('userInfo',JSON.stringify(allUser))
+   
+
    console.log(allUser)
     return (
         <>
@@ -18,33 +26,33 @@ const Register = () => {
         <div class="shape"></div>
         <div class="shape"></div>
       </div>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleRegister} className='h-[600px]'>
         <h3 className=''>Register Here</h3>
 
         <label for="username">Username</label>
         <input
-          onChange={(e) => setName(e.target.value)}
           type="text"
-          placeholder="Enter your user name"
+          placeholder="Enter your  name"
           id="username"
         />
-        <label for="username">Username</label>
+        <label for="email">Email</label>
         <input
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Enter your user name"
-          id="username"
+          type="email"
+          placeholder="Enter your email"
+          id="email"
         />
 
         <label for="password">Password</label>
         <input
-          onChange={(e) => setPass(e.target.value)}
           type="password"
           placeholder="Password"
           id="password"
         />
 
-        <button>Log In</button>
+        <button>Register</button>
+        <div className="flex justify-between items-center mt-3">
+            <p>Already have an account  ? </p>
+          <Link to='/login' className="text-zinc-900 underline">Login</Link>  </div>
       </form>
     </>
     );
