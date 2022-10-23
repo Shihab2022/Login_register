@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -15,7 +16,7 @@ localStorage.setItem('userInfo',JSON.stringify(allUser))
  console.log(allUser)
   return (
     <>
-      <div class="background">
+      <div class="background h-[520px]">
         <div class="shape"></div>
         <div class="shape"></div>
       </div>
@@ -39,6 +40,9 @@ localStorage.setItem('userInfo',JSON.stringify(allUser))
         />
 
         <button>Log In</button>
+        <div className="flex justify-between items-center mt-5">
+            <p>You have no account  please ? </p>
+          <Link to='/register' className="text-zinc-900 underline">Register</Link>  </div>
       </form>
     </>
   );
