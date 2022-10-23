@@ -42,8 +42,8 @@ signInWithEmailAndPassword(data.email, data.password);
     <div
       className="flex  justify-center w-screen h-screen items-center"
     >
-      <div className="card shadow-2xl shadow-blue-500 w-full lg:w-4/12 ">
-        <div className="card-body ">
+      <div className="card shadow-2xl border-2  border-red-500 shadow-blue-500 h-[500px] w-full lg:w-4/12 ">
+        <div className="card-body border-2  border-red-900 ">
           {/* <img src={logo} className='w-28 bg-slate-300' alt="" /> */}
           <h1 className="text-3xl font-bold text-center uppercase text-[#002341]">
             login{" "}
