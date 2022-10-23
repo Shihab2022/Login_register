@@ -3,27 +3,25 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-    
+    const [message,setMessage]=useState('')
   const allUser=JSON.parse(localStorage.getItem('userInfo'))
-console.log(allUser)
   const handleLogin = (e) => {
     const name=e.target.username.value
     const pass=e.target.password.value
     const userName=allUser.filter(u=>u.name===name)
     if(userName.length!==0){
         if(userName[0].pass === pass){
-            console.log('success')
+            e.target.reset();
+            setMessage('User Login Successfully ')
         }
         else{
-            console.log('wrong password')
+            setMessage('Sorry Your Password is wrong!!! ')
         }
     }
     else{
-        console.log('wrong user')
+        setMessage('Sorry Your user name is wrong!!! ')
     }
-    console.log(name,pass)
     e.preventDefault();
-    // localStorage.setItem("userInfo", userInfo);
   };
 
   return (
@@ -34,12 +32,15 @@ console.log(allUser)
       </div>
       <form onSubmit={handleLogin}>
         <h3>Login Here</h3>
-
+{
+    message && <p className="text-center text-red-500 font-semibold mt-1">{message}</p>
+}
         <label for="username">Username</label>
         <input
           type="text"
           placeholder="Enter your user name"
           id="username"
+          required
         />
 
         <label for="password">Password</label>
@@ -47,6 +48,7 @@ console.log(allUser)
           type="password"
           placeholder="Password"
           id="password"
+          required
         />
 
         <button>Log In</button>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
+    const [message,setMessage]=useState('')
     const allUser=JSON.parse(localStorage.getItem('userInfo') || '[]')
    
     const handleRegister = (e) => {
@@ -11,11 +12,9 @@ const Register = () => {
         const userInfo = { name: name, pass: password ,email:email };
         localStorage.setItem('userInfo',JSON.stringify(allUser))
         allUser.push(userInfo)
-        console.log(name,)
-    //   e.preventdefault();
-    console.log('ok')
+        setMessage('User Register Successfully ')
+        e.target.reset();
       e.preventDefault();
-      // localStorage.setItem("userInfo", userInfo);
     };
    
 
@@ -28,18 +27,23 @@ const Register = () => {
       </div>
       <form onSubmit={handleRegister} className='h-[600px]'>
         <h3 className=''>Register Here</h3>
+        {
+    message && <p className="text-center text-red-500 font-semibold mt-1">{message}</p>
+}
 
         <label for="username">Username</label>
         <input
           type="text"
           placeholder="Enter your  name"
           id="username"
+          required
         />
         <label for="email">Email</label>
         <input
           type="email"
           placeholder="Enter your email"
           id="email"
+          required
         />
 
         <label for="password">Password</label>
@@ -47,6 +51,7 @@ const Register = () => {
           type="password"
           placeholder="Password"
           id="password"
+          required
         />
 
         <button>Register</button>
