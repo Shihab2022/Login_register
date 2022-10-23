@@ -1,28 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 
 const Login = () => {
+  const [name, setName] = useState(null);
+  const [pass, setPass] = useState(null);
+  const allUser=JSON.parse(localStorage.getItem('userInfo') || '[]')
+  const userInfo = { name: name, pass: pass };
+  const handleLogin = (e) => {
+    e.preventdefault();
+    // localStorage.setItem("userInfo", userInfo);
+  };
+  allUser.push(userInfo)
+localStorage.setItem('userInfo',JSON.stringify(allUser))
+ console.log(allUser)
   return (
     <>
-     <div class="background">
+      <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
-    </div>
-    <form>
+      </div>
+      <form onSubmit={handleLogin}>
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username"/>
+        <input
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Enter your user name"
+          id="username"
+        />
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password"/>
+        <input
+          onChange={(e) => setPass(e.target.value)}
+          type="password"
+          placeholder="Password"
+          id="password"
+        />
 
         <button>Log In</button>
-        {/* <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div> */}
-    </form>
+      </form>
     </>
   );
 };
